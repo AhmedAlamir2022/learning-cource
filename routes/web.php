@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\MainController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,41 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [MainController::class, 'index'])->name('index');
+Route::get('/about', [MainController::class, 'about'])->name('about');
+Route::get('/team', [MainController::class, 'team'])->name('team');
+Route::get('/services', [MainController::class, 'services'])->name('services');
+Route::get('/blog', [MainController::class, 'blog'])->name('blog');
+Route::get('/articles', [MainController::class, 'articles'])->name('articles');
 
-Route::get('/about', function () {
-    return 'about page';
-});
-
-Route::get('/contact', function () {
-    return 'contact page';
-});
-
-Route::post('/contact', function () {
-    return 'contact page';
-});
-
-Route::get('/blog', function () {
-    return 'blog page';
-});
-
-Route::get('/services', function () {
-    return 'services page';
-})->name('services');
-
-Route::get('/team', function () {
-    return 'our-team page';
-});
-
-Route::get('course/{name}/{hours?}', function ($name, $hours = 0) {
-    if($hours == 0){
-        return 'course name is '.$name;
-    }else{
-        return 'course name is '.$name . ' and hours is '.$hours;
-    }
-})->whereAlpha('name')->whereNumber('hours');
+Route::resource('products', ProductController::class);
 
 
 
