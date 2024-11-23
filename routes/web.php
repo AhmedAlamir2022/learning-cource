@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\FormController;
 use App\Http\Controllers\MainController;
-use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,13 +16,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [MainController::class, 'index'])->name('index');
-Route::get('/about', [MainController::class, 'about'])->name('about');
-Route::get('/team', [MainController::class, 'team'])->name('team');
-Route::get('/services', [MainController::class, 'services'])->name('services');
-Route::get('/blog', [MainController::class, 'blog'])->name('blog');
-Route::get('/articles', [MainController::class, 'articles'])->name('articles');
+Route::get('/resume', [MainController::class, 'resume'])->name('resume');
+Route::get('/projects', [MainController::class, 'projects'])->name('projects');
+Route::get('/contact', [MainController::class, 'contact'])->name('contact');
 
-Route::resource('products', ProductController::class);
+Route::get('/form1', [FormController::class, 'form1'])->name('form1');
+Route::post('/postform1', [FormController::class, 'form1_store'])->name('form1.store');
 
 
 
